@@ -1,0 +1,38 @@
+
+<div class="tareas">
+  
+  <div class="hoy">
+    <h3>HOY</h3>
+
+    <form name="nuevaTareaForm">
+
+      <md-input-container>
+        <label>Nueva tarea</label>
+        <input ng-model="vm.tareaNueva.title">
+      </md-input-container>
+
+      <md-button class="md-raised md-primary" ng-click="vm.tareaNueva.title && vm.anadeTarea(tareas)">+</md-button>
+
+    </form>
+
+    <md-list class="hoy">
+      <md-list-item ng-repeat="tarea in tareas | filter:{date:vm.hoy}">
+        <md-checkbox id="taskToday_{{$index}}" class="md-primary" ng-model="tarea.resuelta" /></md-checkbox>
+        <p ng-class="{resuelta:tarea.resuelta}">{{tarea.title}}</p>
+
+      </md-list-item>
+    </md-list>
+
+    <h3>HISTÓRICO</h3>
+
+    <md-list class="historico">
+      <md-list-item ng-repeat="tarea in tareas | filter: {date:'!' + vm.hoy}">
+        <md-checkbox id="taskHistory_{{$index}}" class="md-primary" ng-model="tarea.resuelta" /></md-checkbox>
+        <p ng-class="{resuelta:tarea.resuelta}">{{tarea.title}}</span>
+
+      </md-list-item>
+    </md-list>
+
+  </div>
+
+</div>
